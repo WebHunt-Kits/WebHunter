@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+gunicorn = "==20.0.4"
+redis = "*"
+python-dotenv = "*"
+flask-sqlalchemy = "*"
+flask-mico = "*"
+requests = "*"
+celery = "*"
+pymysql = "*"
+gevent = "*"
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+pytest = "*"
+watchdog = "*"
+pylint-flask-sqlalchemy = "*"
+
+[requires]
+python_version = "3.7.6"
+
+[pipenv]
+allow_prereleases = true

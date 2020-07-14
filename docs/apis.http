@@ -1,0 +1,50 @@
+@host=localhost
+@port=5000
+
+
+#### 获取工作台的作业指导书
+GET http://{{host}}:{{port}}/v1/components
+
+##### return: 
+# {
+#     "code": 200,
+#     "success": true,
+#     "message": "OK",
+#     "data":{}
+# }
+
+
+
+#### 新增工作台需安装的设备设定
+POST http://{{host}}:{{port}}/api/v1/stage/equipments
+Content-Type: application/json
+
+{
+    "name": "RAID1",
+    "type": "RAID"
+}
+
+##### returns:
+# {
+#     "code": 200,
+#     "data": null,
+#     "message": "OK",
+#     "success": true
+# }
+
+
+#### 删除工作台设备设定
+DELETE http://{{host}}:{{port}}/api/v1/stage/equipments
+Content-Type: application/json
+
+{
+    "id": "123"
+}
+
+##### returns:
+# {
+#     "code": 200,
+#     "data": null,
+#     "message": "OK",
+#     "success": true
+# }

@@ -11,6 +11,6 @@ from api.v1.users import LoginApiView
 
 urlpatterns = [
     ('components/', Components),
-    ('components/<string:c_id>', SpecifyComponents),
-    ('login', LoginApiView)
+    ('components/<string:c_id>/', SpecifyComponents),
+    ('login/', LoginApiView)
 ]

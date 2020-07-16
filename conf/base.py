@@ -9,7 +9,9 @@ LOG_DIR = os.path.join(BASE_DIR, "logs")
 
 MIDDLEWARES = [
     "core.middlewares.Cors",
-    "flask_mico.middleware.Translate"
+    "flask_mico.middleware.Translate",
+    "core.middlewares.Authentication",
+    "core.middlewares.VerifyApiSign"
 ]
 
 EXTENSIONS = [

@@ -9,6 +9,18 @@ def make_new_sch(src: Dict, new_items: Dict) -> Dict:
     return r
 
 
+APISIGN_SCH = {
+    "sign": {
+        "type": "string",
+        "empty": False,
+        "required": True
+    },
+    "ts": {
+        "type": "string",
+        "empty": False,
+        "required": True
+    }
+}
 COMPONENT_TYPE_REGEX = "^(%s)$" % "|".join(ComponentType.all_kinds())
 COMPONENT_FIRST_REGEX = "^[a-z]{1}$"
 PAGINATE_SCH = {
@@ -36,5 +48,7 @@ COMPONENTS_GET_SCHEMA = {
     "first": {
         "type": "string",
         "regex": COMPONENT_FIRST_REGEX
-    }
+    },
+    "ts": APISIGN_SCH["ts"],
+    "sign": APISIGN_SCH["sign"]
 }

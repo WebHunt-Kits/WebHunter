@@ -24,15 +24,19 @@ class User(BaseModel):
         return '<User %r>' % self.username
 
     @classmethod
+    def get_user(cls, name: str):
+        try:
+            return cls.query.filter_by(
+                username=name, deleted_at=None).first()
+        except sqlalchemy_exc.SQLAlchemyError:
+            raise AppError(APIErrorStausCode.DATABASE_ERR)
+
+    @classmethod
     def create_gh_user(cls, info: Dict) -> Tuple[str, str]:
         username = info["login"]
         avatar_url = info["avatar_url"]
         email = info["email"]
-        try:
-            user = cls.query.filter_by(
-                username=username, deleted_at=None).first()
-        except sqlalchemy_exc.SQLAlchemyError:
-            raise AppError(APIErrorStausCode.DATABASE_ERR)
+        user = cls.get_user(username)
         if not user:
             user = cls(username=username, avatar_url=avatar_url, email=email)
             db.session.add(user)

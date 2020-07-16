@@ -36,29 +36,22 @@ def get_component_from_cid(c_id: str) -> Component:
 class Components(ApiView):
     @validator(COMPONENTS_GET_SCHEMA, in_params=True)
     def get(self):
-        # get component from name
-        name = request.args.get('name', None)
-        if name:
-            try:
-                component = Component.query.filter_by(
-                    c_name=name, deleted_at=None).first()
-            except sqlalchemy_exc.SQLAlchemyError:
-                raise AppError(APIErrorStausCode.DATABASE_ERR)
-            if not component:
-                raise NotSupportedError(
-                    "Name that does not exist in the components")
-            return self.on_success(data=process_component_data(component))
         # paging
         page = int(request.args.get('page', 1))
         per_page = int(request.args.get('per_page', 50))
-        c_type = request.args.get("type", None)
-        c_first = request.args.get("first", None)
 
+        # filters
         components_query = [Component.deleted_at == None]
-        if c_type:
-            components_query.append(Component.c_type == c_type)
-        if c_first:
-            components_query.append(Component.c_first == c_first)
+        filters = (request.args.get('name', None), request.args.get(
+            "type", None), request.args.get("first", None))
+        if filters[0]:
+            components_query.append(
+                Component.c_name.ilike("%"+filters[0]+"%"))
+        if filters[1]:
+            components_query.append(Component.c_type == filters[1])
+        if filters[2]:
+            components_query.append(Component.c_first == filters[2])
+
         components_paginate = Component.query.filter(
             and_(*components_query)).paginate(page=page, per_page=per_page)
         data = {

@@ -25,19 +25,16 @@ PAGINATE_SCH = {
 COMPONENTS_GET_SCHEMA = {
     "name": {
         "type": "string",
-        "empty": False,
-        "excludes": ["page", "per_page", "type", "first"]
+        "empty": False
     },
-    "page": make_new_sch(PAGINATE_SCH["page"], {"excludes": "name"}),
-    "per_page":  make_new_sch(PAGINATE_SCH["per_page"], {"excludes": "name"}),
+    "page": PAGINATE_SCH["page"],
+    "per_page": PAGINATE_SCH["per_page"],
     "type": {
         "type": "string",
-        "regex": COMPONENT_TYPE_REGEX,
-        "excludes": "name"
+        "regex": COMPONENT_TYPE_REGEX
     },
     "first": {
         "type": "string",
-        "regex": COMPONENT_FIRST_REGEX,
-        "excludes": "name"
+        "regex": COMPONENT_FIRST_REGEX
     }
 }

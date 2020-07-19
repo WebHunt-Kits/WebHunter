@@ -52,3 +52,16 @@ COMPONENTS_GET_SCHEMA = {
     "ts": APISIGN_SCH["ts"],
     "sign": APISIGN_SCH["sign"]
 }
+TASKS_GET_SCHEMA = {
+    "target": {
+        "type": "string",
+        "empty": False,
+        "required": True
+    },
+    "retry": {
+        "type": "string",
+        "empty": False
+    },
+    "ts": APISIGN_SCH["ts"],
+    "sign": APISIGN_SCH["sign"]
+}

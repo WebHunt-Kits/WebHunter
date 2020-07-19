@@ -35,6 +35,7 @@ class IgnorePathsMidMixin:
 
     def isignore(self, req_path) -> bool:
         for path in self._ignore_paths:
+            print(path, req_path)
             if path in req_path:
                 return True
         return False
@@ -42,13 +43,15 @@ class IgnorePathsMidMixin:
 
 class Authentication(IgnorePathsMidMixin):
     def __init__(self) -> None:
+        self.userk = "Ghuser"
         self.set_ignore_paths(("/v1/login", "/v1/components"))
 
     def process_request(self):
-        logger.debug("Authentication - %s", repr(request.method))
         if self.isignore(request.path):
             return
-        username = request.cookies.get("username", None)
+        logger.debug("Authentication - %s %s",
+                     repr(request.method), request.headers[self.userk])
+        username = request.headers.get(self.userk, None)
         if username is None:
             raise AuthenticationRequiredError()
         user = User.get_user(username)

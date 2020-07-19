@@ -6,11 +6,12 @@ Example:
         ('index/', Index)
     ]
 """
-from api.v1.components import Components, SpecifyComponents
+from api.v1.components import Components
 from api.v1.users import LoginApiView
+from api.v1.tasks import Tasks
 
 urlpatterns = [
     ('components/', Components),
-    ('components/<string:c_id>/', SpecifyComponents),
-    ('login/', LoginApiView)
+    ('login/', LoginApiView),
+    ('tasks/', Tasks)
 ]

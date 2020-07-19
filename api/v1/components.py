@@ -69,12 +69,6 @@ class Components(ApiView):
 
 
 class SpecifyComponents(ApiView):
-
-    def get(self, c_id: str):
-        component = get_component_from_cid(c_id)
-        data = process_component_data(component)
-        return self.on_success(data=data)
-
     def delete(self, c_id: str):
         component = get_component_from_cid(c_id)
         component.deleted_at = datetime.datetime.now()

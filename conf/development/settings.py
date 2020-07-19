@@ -31,4 +31,4 @@ class CeleryConfig:
     CELERY_RESULT_SERIALIZER = 'json'
     CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24 * 7
     CELERY_ACCEPT_CONTENT = ['json', 'msgpack']
-    CELERY_IMPORTS = ("core.tasks", )
+    CELERY_IMPORTS = ("core.cookcelery.tasks", )

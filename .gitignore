@@ -109,3 +109,4 @@ dump.rdb
 Pipfile.lock
 django_session_serialize.py
 # field_schema.py
+components

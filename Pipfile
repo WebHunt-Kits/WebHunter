@@ -8,11 +8,10 @@ gunicorn = "==20.0.4"
 redis = "*"
 python-dotenv = "*"
 flask-sqlalchemy = "*"
-flask-mico = "*"
+flask-mico = {git = "https://github.com/YE-Kits/flask_mico.git",ref = "master"}
 requests = "*"
 celery = "*"
 pymysql = "*"
-gevent = "*"
 
 [dev-packages]
 pylint = "*"
